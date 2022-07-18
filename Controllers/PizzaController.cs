@@ -65,14 +65,13 @@ namespace la_mia_pizzeria_static.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
         public IActionResult Create(Pizza pizza)
         {
             if (!ModelState.IsValid)
             {
                 return View("Create", pizza);
             }
-            using(PizzaContext context = new PizzaContext())
+            using (PizzaContext context = new PizzaContext())
             {
                 context.Pizze.Add(pizza);
                 context.SaveChanges();
@@ -80,6 +79,32 @@ namespace la_mia_pizzeria_static.Controllers
 
             return RedirectToAction("Menu");
         }
+
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult Create(string name, string description, string img, double price)
+        //{
+
+        //    using (PizzaContext context = new PizzaContext())
+        //    {
+        //        Pizza nuovaPizza = new Pizza();
+        //        nuovaPizza.Name = name;
+        //        nuovaPizza.Description = description;
+        //        nuovaPizza.Img = img;
+
+        //        if(price > 0)
+        //        {
+        //            nuovaPizza.Price = price;
+        //        }
+
+
+        //        context.Pizze.Add(nuovaPizza);
+        //        context.SaveChanges();
+        //    }
+
+        //    return RedirectToAction("Menu");
+        //}
 
         public IActionResult Privacy()
         {
