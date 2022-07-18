@@ -14,11 +14,13 @@ namespace la_mia_pizzeria_static.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
 
+        [HttpGet]
         public IActionResult Menu()
         {
             using(PizzaContext context = new PizzaContext())
@@ -30,6 +32,8 @@ namespace la_mia_pizzeria_static.Controllers
            
         }
 
+
+        [HttpGet]
         public IActionResult DettaglioPizza(int id)
         {
             using (PizzaContext context = new PizzaContext())
@@ -47,9 +51,34 @@ namespace la_mia_pizzeria_static.Controllers
             }
         }
 
+        [HttpGet]
         public IActionResult ChiSiamo()
         {
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public IActionResult Create(Pizza pizza)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Create", pizza);
+            }
+            using(PizzaContext context = new PizzaContext())
+            {
+                context.Pizze.Add(pizza);
+                context.SaveChanges();
+            }
+
+            return RedirectToAction("Menu");
         }
 
         public IActionResult Privacy()
