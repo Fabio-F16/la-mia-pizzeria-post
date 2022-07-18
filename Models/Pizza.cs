@@ -10,8 +10,8 @@ namespace la_mia_pizzeria_static.Models
         [StringLength(50, ErrorMessage ="Superato limite caratteri")]
         public string Name { get; set; }
 
-        [StringLength(150, ErrorMessage = "Superato limite caratteri")]
         [Required(ErrorMessage = "Il campo è obbligatorio!")]
+        [StringLength(150, ErrorMessage = "Superato limite caratteri")]  
         public string Description { get; set; }
 
         [Required(ErrorMessage = "Il campo è obbligatorio!")]
@@ -19,9 +19,8 @@ namespace la_mia_pizzeria_static.Models
         public string Img { get; set; }
 
         [Required(ErrorMessage = "Il campo è obbligatorio!")]
-        [Range(1, 20, ErrorMessage ="Non può essere zero")]
+        [Range(1, 15, ErrorMessage ="Non può essere zero")]
         public double Price { get; set; }
-
 
 
         public Pizza()
